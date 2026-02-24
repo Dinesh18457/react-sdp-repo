@@ -28,9 +28,12 @@ const CustomerLogin = () => {
     
     if (customer) 
     {
+      const safeCustomer = { ...customer };
+      delete safeCustomer.password;
       sessionStorage.setItem('isCustomer', 'true');
+      sessionStorage.setItem('customer', JSON.stringify(safeCustomer));
       alert(`Login successful! Welcome, ${customer.fullName}!`);
-      console.log('Login successful:', customer);
+      console.log('Login successful:', safeCustomer);
       setFormData({
         username: '',
         password: '',
